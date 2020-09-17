@@ -14,6 +14,13 @@ public class Gift {
     private Long rewardId;
     private Long walletId;
     private String status;
+    
+    @PostUpdate
+    public void onPostUpdate(){
+    Used allocated = new Used();
+    BeanUtils.copyProperties(this, allocated);
+    allocated.publishAfterCommit();
+    }
 
 
     public Long getId() {
